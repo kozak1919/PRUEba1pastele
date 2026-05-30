@@ -15,7 +15,7 @@
 
     /* Fuentes del sistema y premium */
     --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-body: 'Poppins', system-ui, -apple-system, sans-serif;
 }
 
 /* ==========================================================================
@@ -131,21 +131,21 @@ h2::after {
 
 .product-card {
     background-color: #ffffff;
-    border: 1px solid var(--color-latte);
-    border-radius: 8px;     /* Bordes redondeados modernos de 8px */
+    border: 1px solid rgba(44, 27, 17, 0.08); /* Borde más sutil y limpio */
+    border-radius: 12px;     /* Bordes redondeados suaves de 12px */
     padding: 30px;
     flex: 1 1 300px;        /* Diseño flexible que crece y se reduce adaptativamente */
     max-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 4px 12px rgba(44, 27, 17, 0.05); /* Sombra sutil y elegante de elevación */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra difuminada muy sutil */
+    transition: all 0.3s ease; /* Transición suave para todos los efectos */
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(44, 27, 17, 0.06);
+    transform: translateY(-5px); /* Elevación sutil al pasar el cursor */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Aumentamos ligeramente la sombra */
 }
 
 .product-card h3 {
@@ -199,21 +199,22 @@ h2::after {
 .form-group select,
 .form-group textarea {
     padding: 12px 16px;
-    border: 1px solid var(--color-latte);
+    border: 1px solid rgba(44, 27, 17, 0.12); /* Bordes más finos y sutiles */
     border-radius: 8px;
     font-family: var(--font-body);
     font-size: 0.95rem;
     background-color: var(--color-cream-soft);
     color: var(--color-text-main);
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--color-caramel);
-    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.25); /* Enfoque llamativo */
+    background-color: #ffffff; /* Iluminación suave al enfocar */
 }
 
 .form-group textarea {
@@ -228,23 +229,23 @@ h2::after {
 }
 
 .btn-submit {
-    background-color: var(--color-caramel);
+    background: linear-gradient(135deg, var(--color-caramel), #b58353); /* Degradado premium café/caramelo */
     color: #ffffff;
     border: none;
-    padding: 14px 40px;
+    padding: 15px 45px;
     font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 1rem;
-    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border-radius: 30px; /* Esquinas redondeadas estilo píldora premium */
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(212, 163, 115, 0.2);
+    box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transición suave de color de fondo */
 }
 
 .btn-submit:hover {
-    background-color: var(--color-coffee-dark);
-    box-shadow: 0 6px 12px rgba(44, 27, 17, 0.25);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #b58353, var(--color-coffee-dark)); /* Cambio dinámico en hover */
+    box-shadow: 0 6px 20px rgba(44, 27, 17, 0.3);
+    transform: translateY(-2px);
 }
 
 .btn-submit:active {
@@ -255,21 +256,32 @@ h2::after {
    6. SECCIÓN SOBRE NOSOTROS Y HERO (Detalles estéticos mínimos)
    ========================================================================== */
 .hero-section {
+    position: relative;
     text-align: center;
-    padding: 100px 20px;
+    padding: 140px 20px;
+    /* Degradado premium con filtro oscuro sobre la imagen de fondo generada */
+    background: linear-gradient(135deg, rgba(44, 27, 17, 0.88), rgba(44, 27, 17, 0.65)), url('../images/coffee_shop_hero.png') center/cover no-repeat;
+    color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(44, 27, 17, 0.1);
+    margin-bottom: 40px;
 }
 
 .hero-section h1 {
-    font-size: 3rem;
+    font-size: 3.2rem;
     margin-bottom: 20px;
     line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* Sombra de texto para legibilidad premium */
 }
 
 .hero-section p {
-    font-size: 1.2rem;
-    color: var(--color-text-muted);
-    max-width: 600px;
+    font-size: 1.25rem;
+    color: var(--color-cream-soft); /* Contraste suave en color crema */
+    max-width: 650px;
     margin: 0 auto;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .about-section {
