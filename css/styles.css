@@ -114,6 +114,7 @@ h2::after {
     font-size: 1.05rem;
     color: var(--color-text-main);
     letter-spacing: 0.5px;
+    margin: 0 15px;
 }
 
 .nav-links a:hover {
