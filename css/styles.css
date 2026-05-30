@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+/* ==========================================================================
+   1. VARIABLES GLOBALES (Diseño moderno y acogedor de cafetería)
+   ========================================================================== */
+:root {
+    /* Paleta de colores */
+    --color-coffee-dark: #2c1b11;    /* Marrón café tostado profundo */
+    --color-caramel: #d4a373;        /* Dorado caramelo / Color de acento principal */
+    --color-cream-soft: #fbfaf7;     /* Crema suave y limpio para el fondo general */
+    --color-latte: #e8e1d5;          /* Crema latte medio para contenedores y bordes */
+    --color-sage: #606c38;           /* Verde salvia orgánico para acentos secundarios */
+    --color-text-main: #40352c;      /* Marrón oscuro ceniza para legibilidad máxima */
+    --color-text-muted: #7d6e63;     /* Marrón claro apagado para subtítulos */
+
+    /* Fuentes del sistema y premium */
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* ==========================================================================
+   2. RESET BÁSICO DE CSS
+   ========================================================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   3. ESTILOS GENERALES
+   ========================================================================== */
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-cream-soft);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-coffee-dark);
+    font-weight: 700;
+}
+
+a {
+    color: var(--color-caramel);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-coffee-dark);
+}
