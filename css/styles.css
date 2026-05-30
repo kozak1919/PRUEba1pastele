@@ -89,7 +89,7 @@ h2::after {
 
 /* A) Menú de Navegación */
 .main-header {
-    background-color: #ffffff;
+    background-color: #f5ece1; /* Color crema cálido sutilmente diferente al del body */
     border-bottom: 1px solid var(--color-latte);
     position: sticky;
     top: 0;
@@ -132,14 +132,14 @@ h2::after {
 .product-card {
     background-color: #ffffff;
     border: 1px solid var(--color-latte);
-    border-radius: 12px;
+    border-radius: 8px;     /* Bordes redondeados modernos de 8px */
     padding: 30px;
     flex: 1 1 300px;        /* Diseño flexible que crece y se reduce adaptativamente */
     max-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 4px 6px rgba(44, 27, 17, 0.02);
+    box-shadow: 0 4px 12px rgba(44, 27, 17, 0.05); /* Sombra sutil y elegante de elevación */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -170,10 +170,9 @@ h2::after {
 /* C) Formulario de Contacto (Alineación vertical y botón centrado) */
 .contact-section {
     background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(44, 27, 17, 0.03);
-    margin-top: 40px;
-    margin-bottom: 60px;
+    border-radius: 8px;     /* Bordes redondeados modernos de 8px */
+    box-shadow: 0 6px 20px rgba(44, 27, 17, 0.06); /* Sombra sutil de elevación */
+    margin: 40px auto 60px auto;
     padding: 50px 40px;
     max-width: 650px;
 }
@@ -239,7 +238,7 @@ h2::after {
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(212, 163, 115, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transición suave de color de fondo */
 }
 
 .btn-submit:hover {
@@ -294,5 +293,6 @@ footer {
     padding: 40px 20px;
     font-size: 0.9rem;
     margin-top: 80px;
+    border-top: 3px solid var(--color-caramel); /* Línea de acento distintiva */
 }
 
