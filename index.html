@@ -9,46 +9,67 @@
 <body>
 
     <!-- Cabecera principal del sitio -->
-    <header>
+    <header class="main-header">
         <!-- Menú de navegación principal -->
-        <nav>
-            <a href="#inicio">Inicio</a> | 
-            <a href="#menu">Menú</a> | 
-            <a href="#nosotros">Nosotros</a> | 
-            <a href="#contacto">Contacto</a>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
         </nav>
     </header>
 
     <!-- Contenido principal de la página -->
     <main>
         <!-- Sección de Bienvenida / Héroe -->
-        <section id="inicio">
-            <!-- Aquí irá el título principal, eslogan y una imagen de presentación -->
+        <section id="inicio" class="hero-section">
+            <h1>Granos de Origen, Momentos Únicos</h1>
+            <p>Descubre el arte del café de especialidad y la pastelería artesanal en un ambiente acogedor.</p>
         </section>
 
         <!-- Sección de Productos Destacados (Café y Pastelería) -->
-        <section id="menu">
-            <!-- Aquí irá la muestra de cafés de especialidad y postres recomendados -->
+        <section id="menu" class="products-section">
+            <h2>Nuestras Especialidades</h2>
+            <div class="products-container">
+                <article class="product-card">
+                    <h3>Espresso Especial</h3>
+                    <p>Granos de origen único con notas de chocolate y frutos rojos.</p>
+                    <span class="price">$3.50</span>
+                </article>
+                <article class="product-card">
+                    <h3>Latte de Lavanda</h3>
+                    <p>Deliciosa combinación de espresso, leche vaporizada y un toque de lavanda orgánica.</p>
+                    <span class="price">$4.50</span>
+                </article>
+                <article class="product-card">
+                    <h3>Croissant Artesanal</h3>
+                    <p>Hojaldre 100% mantequilla, horneado diariamente en nuestro taller.</p>
+                    <span class="price">$3.00</span>
+                </article>
+            </div>
         </section>
 
         <!-- Sección Sobre Nosotros / Nuestra Historia -->
-        <section id="nosotros">
-            <!-- Aquí irá una breve descripción sobre el origen de nuestros granos y repostería artesanal -->
+        <section id="nosotros" class="about-section">
+            <h2>Nuestra Historia</h2>
+            <p>Seleccionamos cuidadosamente granos de fincas sostenibles de todo el mundo y elaboramos cada postre con técnicas tradicionales y amor.</p>
         </section>
 
         <!-- Sección de Ubicación y Horarios -->
-        <section id="contacto">
-            <!-- Aquí irán los datos de contacto, dirección y horario de apertura -->
-            <form action="#" method="post">
-                <div>
+        <section id="contacto" class="contact-section">
+            <h2>Contacto</h2>
+            <form action="#" method="post" class="contact-form">
+                <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="email">Correo electrónico:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="cafe-favorito">Café favorito:</label>
                     <select id="cafe-favorito" name="cafe_favorito">
                         <option value="">--Selecciona una opción--</option>
@@ -59,12 +80,12 @@
                         <option value="pasteleria">Solo pastelería</option>
                     </select>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="comentarios">Comentarios:</label>
                     <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos más..."></textarea>
                 </div>
-                <div>
-                    <button type="submit">Enviar</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Enviar</button>
                 </div>
             </form>
         </section>
@@ -72,7 +93,7 @@
 
     <!-- Pie de página con información secundaria y derechos -->
     <footer>
-        <!-- Aquí irán las redes sociales y el descargo de responsabilidad / derechos reservados -->
+        <p>&copy; 2026 Cafetería de Especialidad y Pastelería. Hecho con amor.</p>
     </footer>
 
 </body>
