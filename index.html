@@ -11,30 +11,61 @@
     <header>
         <!-- Menú de navegación principal -->
         <nav>
-            <!-- Aquí irán los enlaces a las distintas secciones: Inicio, Menú, Nosotros, Contacto -->
+            <a href="#inicio">Inicio</a> | 
+            <a href="#menu">Menú</a> | 
+            <a href="#nosotros">Nosotros</a> | 
+            <a href="#contacto">Contacto</a>
         </nav>
     </header>
 
     <!-- Contenido principal de la página -->
     <main>
         <!-- Sección de Bienvenida / Héroe -->
-        <section>
+        <section id="inicio">
             <!-- Aquí irá el título principal, eslogan y una imagen de presentación -->
         </section>
 
         <!-- Sección de Productos Destacados (Café y Pastelería) -->
-        <section>
+        <section id="menu">
             <!-- Aquí irá la muestra de cafés de especialidad y postres recomendados -->
         </section>
 
         <!-- Sección Sobre Nosotros / Nuestra Historia -->
-        <section>
+        <section id="nosotros">
             <!-- Aquí irá una breve descripción sobre el origen de nuestros granos y repostería artesanal -->
         </section>
 
         <!-- Sección de Ubicación y Horarios -->
-        <section>
+        <section id="contacto">
             <!-- Aquí irán los datos de contacto, dirección y horario de apertura -->
+            <form action="#" method="post">
+                <div>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div>
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="cafe-favorito">Café favorito:</label>
+                    <select id="cafe-favorito" name="cafe_favorito">
+                        <option value="">--Selecciona una opción--</option>
+                        <option value="espresso">Espresso</option>
+                        <option value="cappuccino">Cappuccino</option>
+                        <option value="latte">Latte</option>
+                        <option value="filtrado">Café Filtrado (V60)</option>
+                        <option value="pasteleria">Solo pastelería</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="comentarios">Comentarios:</label>
+                    <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos más..."></textarea>
+                </div>
+                <div>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
         </section>
     </main>
 
