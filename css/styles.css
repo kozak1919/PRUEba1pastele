@@ -125,7 +125,49 @@ h2::after {
 .search-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-filter {
+    background-color: #ffffff;
+    border: 1px solid rgba(44, 27, 17, 0.15);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-coffee-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.btn-filter:hover {
+    background-color: var(--color-coffee-dark);
+    color: #ffffff;
+    border-color: var(--color-coffee-dark);
+}
+
+.btn-filter.active {
+    background-color: var(--color-caramel);
+    color: #ffffff;
+    border-color: var(--color-caramel);
+}
+
+.btn-filter.active i {
+    color: #ffffff;
+}
+
+.btn-filter i {
+    color: var(--color-caramel);
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
 }
 
 #search-input {
@@ -162,6 +204,58 @@ h2::after {
     margin-top: 20px;
 }
 
+/* Contenedor de Paginación */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 45px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.btn-paginacion {
+    background-color: #ffffff;
+    border: 1px solid rgba(44, 27, 17, 0.15);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-coffee-dark);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-paginacion:hover:not(:disabled) {
+    background-color: var(--color-coffee-dark);
+    color: #ffffff;
+    border-color: var(--color-coffee-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(44, 27, 17, 0.15);
+}
+
+.btn-paginacion.active {
+    background-color: var(--color-caramel);
+    color: #ffffff;
+    border-color: var(--color-caramel);
+    box-shadow: 0 4px 12px rgba(212, 163, 115, 0.35);
+}
+
+.btn-paginacion:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background-color: #f7f3ed;
+    border-color: rgba(44, 27, 17, 0.08);
+    color: var(--color-text-muted);
+}
+
 .product-card {
     background-color: #ffffff;
     border: 1px solid rgba(44, 27, 17, 0.08); /* Borde más sutil y limpio */
@@ -181,12 +275,52 @@ h2::after {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Aumentamos ligeramente la sombra */
 }
 
-.product-card img {
+.product-image-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.product-image-container img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 15px;
+    display: block;
+}
+
+.btn-favorito {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 5;
+    outline: none;
+}
+
+.btn-favorito:hover {
+    transform: scale(1.1);
+    background-color: #ffffff;
+}
+
+.btn-favorito i {
+    color: var(--color-caramel);
+    font-size: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.btn-favorito i.fa-solid.favorito {
+    color: #e63946; /* Rojo intenso de favorito */
 }
 
 .product-card h3 {
