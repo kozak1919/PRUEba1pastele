@@ -121,6 +121,38 @@ h2::after {
     color: var(--color-caramel);
 }
 
+/* Contenedor y Campo de Búsqueda */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+#search-input {
+    width: 100%;
+    max-width: 450px;
+    padding: 12px 24px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    border: 1px solid rgba(44, 27, 17, 0.15);
+    border-radius: 30px;
+    background-color: #ffffff;
+    color: var(--color-text-main);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+#search-input:focus {
+    border-color: var(--color-caramel);
+    box-shadow: 0 4px 20px rgba(212, 163, 115, 0.2);
+}
+
+#search-input::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}
+
 /* B) Cuadrícula Flexible de Productos */
 .products-container {
     display: flex;
