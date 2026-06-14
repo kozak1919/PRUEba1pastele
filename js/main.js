@@ -107,22 +107,54 @@ const productos = [
     }
 ];
 
+// Arreglo mutable (con let) para guardar los IDs favoritos y persistirlos en LocalStorage
+let favoritos = JSON.parse(localStorage.getItem("cafeteria_favoritos")) || [];
+
+// Variable de estado (con let) para controlar el filtro de favoritos activo
+let mostrarSoloFavoritos = false;
+
+// Variables de estado para la paginación de productos
+let productosMostrados = [...productos];
+let paginaActual = 1;
+const productosPorPagina = 5;
+
 // Función para recorrer el arreglo y renderizar los productos en el DOM
-const renderizarProductos = (listaProductos = productos) => {
+const renderizarProductos = () => {
     // Seleccionar el contenedor en el DOM
     const contenedor = document.querySelector(".products-container");
     
     // Verificar que el contenedor exista para evitar errores
     if (!contenedor) return;
 
+    // Calcular paginación
+    const totalPaginas = Math.ceil(productosMostrados.length / productosPorPagina);
+    
+    // Asegurarse de que paginaActual no esté fuera de rango
+    if (paginaActual > totalPaginas) {
+        paginaActual = Math.max(1, totalPaginas);
+    }
+
+    const inicio = (paginaActual - 1) * productosPorPagina;
+    const fin = inicio + productosPorPagina;
+    const productosPagina = productosMostrados.slice(inicio, fin);
+
     // Inicializar variable para acumular el código HTML
     let contenidoHTML = "";
 
     // Recorrer el arreglo usando .forEach()
-    listaProductos.forEach(producto => {
+    productosPagina.forEach(producto => {
+        // Verificar si el producto actual está en la lista de favoritos
+        const esFavorito = favoritos.includes(producto.id);
+        const iconoCorazon = esFavorito ? "fa-solid fa-heart favorito" : "fa-regular fa-heart";
+
         contenidoHTML += `
             <article class="product-card">
-                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <div class="product-image-container">
+                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                    <button class="btn-favorito" data-id="${producto.id}" aria-label="Favorito">
+                        <i class="${iconoCorazon}"></i>
+                    </button>
+                </div>
                 <h3>${producto.nombre}</h3>
                 <p>${producto.desc}</p>
                 <span class="price">$${producto.precio.toLocaleString('es-CL')}</span>
@@ -132,11 +164,101 @@ const renderizarProductos = (listaProductos = productos) => {
 
     // Si no hay productos que mostrar, añadir mensaje amistoso
     if (contenidoHTML === "") {
-        contenidoHTML = `<p class="no-results" style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); font-size: 1.1rem; width: 100%;">No se encontraron especialidades con ese nombre.</p>`;
+        contenidoHTML = `<p class="no-results" style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); font-size: 1.1rem; width: 100%;">No se encontraron especialidades.</p>`;
     }
 
     // Asignar el contenido acumulado al contenedor usando innerHTML
     contenedor.innerHTML = contenidoHTML;
+
+    // Renderizar los controles de paginación
+    renderizarPaginacion(totalPaginas);
+};
+
+// Función para renderizar los controles de paginación en el DOM
+const renderizarPaginacion = (totalPaginas) => {
+    const contenedorPaginacion = document.querySelector("#pagination-container");
+    if (!contenedorPaginacion) return;
+
+    // Si hay 1 o menos páginas, ocultar los controles de paginación
+    if (totalPaginas <= 1) {
+        contenedorPaginacion.innerHTML = "";
+        return;
+    }
+
+    let contenidoHTML = "";
+
+    // Botón Anterior
+    contenidoHTML += `
+        <button class="btn-paginacion" ${paginaActual === 1 ? "disabled" : ""} data-pagina="${paginaActual - 1}" aria-label="Página anterior">
+            <i class="fa-solid fa-chevron-left"></i> Anterior
+        </button>
+    `;
+
+    // Botones de número de página (pestañas)
+    for (let i = 1; i <= totalPaginas; i++) {
+        contenidoHTML += `
+            <button class="btn-paginacion ${paginaActual === i ? "active" : ""}" data-pagina="${i}">
+                Pág. ${i}
+            </button>
+        `;
+    }
+
+    // Botón Siguiente
+    contenidoHTML += `
+        <button class="btn-paginacion" ${paginaActual === totalPaginas ? "disabled" : ""} data-pagina="${paginaActual + 1}" aria-label="Página siguiente">
+            Siguiente <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    `;
+
+    contenedorPaginacion.innerHTML = contenidoHTML;
+
+    // Asignar manejadores de eventos
+    const botones = contenedorPaginacion.querySelectorAll(".btn-paginacion");
+    botones.forEach(boton => {
+        boton.addEventListener("click", () => {
+            const nuevaPagina = parseInt(boton.dataset.pagina);
+            if (!isNaN(nuevaPagina) && nuevaPagina !== paginaActual) {
+                paginaActual = nuevaPagina;
+                renderizarProductos();
+                
+                // Hacer scroll suave hacia la sección de productos para mejorar la navegación
+                const seccionProductos = document.querySelector("#menu");
+                if (seccionProductos) {
+                    seccionProductos.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        });
+    });
+};
+
+// Función unificada para filtrar y renderizar según la búsqueda y el filtro de favoritos
+const filtrarYRenderizar = (resetearPagina = true) => {
+    const inputBusqueda = document.querySelector("#search-input");
+    const texto = inputBusqueda ? inputBusqueda.value.toLowerCase() : "";
+
+    // Crear un arreglo temporal con let
+    let filtrados = [];
+
+    // Recorrer el arreglo usando .forEach()
+    productos.forEach(producto => {
+        const coincideBusqueda = producto.nombre.toLowerCase().includes(texto);
+        const coincideFavorito = !mostrarSoloFavoritos || favoritos.includes(producto.id);
+
+        // Usar if para verificar si el producto cumple con ambos criterios
+        if (coincideBusqueda && coincideFavorito) {
+            filtrados.push(producto);
+        }
+    });
+
+    // Actualizar la lista global de productos a mostrar
+    productosMostrados = filtrados;
+
+    if (resetearPagina) {
+        paginaActual = 1;
+    }
+
+    // Renderizar
+    renderizarProductos();
 };
 
 // Función para configurar el buscador dinámico
@@ -147,28 +269,59 @@ const inicializarBuscador = () => {
     if (!inputBusqueda) return;
 
     // Escuchar el evento 'input' para búsqueda dinámica
-    inputBusqueda.addEventListener("input", (evento) => {
-        // Obtener el texto ingresado en minúsculas para una comparación insensible a mayúsculas
-        const textoIngresado = evento.target.value.toLowerCase();
+    inputBusqueda.addEventListener("input", () => filtrarYRenderizar(true));
+};
 
-        // Crear un arreglo temporal con let para los productos filtrados
-        let productosFiltrados = [];
+// Función para configurar el sistema de favoritos y la delegación de eventos
+const inicializarFavoritos = () => {
+    const contenedor = document.querySelector(".products-container");
+    const btnMostrarFavoritos = document.querySelector("#btn-mostrar-favoritos");
 
-        // Recorrer el arreglo original usando .forEach()
-        productos.forEach(producto => {
-            // Usar 'if' para verificar si el nombre coincide con el texto ingresado
-            if (producto.nombre.toLowerCase().includes(textoIngresado)) {
-                productosFiltrados.push(producto);
-            }
-        });
+    if (!contenedor || !btnMostrarFavoritos) return;
 
-        // Volver a renderizar solo los productos filtrados
-        renderizarProductos(productosFiltrados);
+    // Delegación de eventos (addEventListener) para gestionar clics en botones de favoritos
+    contenedor.addEventListener("click", (evento) => {
+        const botonFavorito = evento.target.closest(".btn-favorito");
+        if (!botonFavorito) return;
+
+        const idProducto = parseInt(botonFavorito.dataset.id);
+        const index = favoritos.indexOf(idProducto);
+
+        // Usar 'if' para alternar el producto en el arreglo de favoritos
+        if (index === -1) {
+            favoritos.push(idProducto);
+        } else {
+            favoritos.splice(index, 1);
+        }
+
+        // Guardar la lista actualizada en LocalStorage
+        localStorage.setItem("cafeteria_favoritos", JSON.stringify(favoritos));
+
+        // Refrescar la visualización manteniendo la página actual
+        filtrarYRenderizar(false);
+    });
+
+    // Filtro de favoritos (Mis Favoritos / Todos los Productos)
+    btnMostrarFavoritos.addEventListener("click", () => {
+        mostrarSoloFavoritos = !mostrarSoloFavoritos;
+
+        // Modificar clases del botón y texto de forma dinámica
+        if (mostrarSoloFavoritos) {
+            btnMostrarFavoritos.classList.add("active");
+            btnMostrarFavoritos.innerHTML = `<i class="fa-solid fa-heart"></i> Todos los Productos`;
+        } else {
+            btnMostrarFavoritos.classList.remove("active");
+            btnMostrarFavoritos.innerHTML = `<i class="fa-regular fa-heart"></i> Mis Favoritos`;
+        }
+
+        // Refrescar la visualización reiniciando a la página 1
+        filtrarYRenderizar(true);
     });
 };
 
-// Ejecutar la renderización y la inicialización de la búsqueda al cargar el DOM
+// Ejecutar la renderización y la inicialización al cargar el DOM
 document.addEventListener("DOMContentLoaded", () => {
     renderizarProductos();
     inicializarBuscador();
+    inicializarFavoritos();
 });
