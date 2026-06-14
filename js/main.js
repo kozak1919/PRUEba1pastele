@@ -82,14 +82,14 @@ const productos = [
         nombre: "Cheesecake de Maracuyá",
         precio: 3800,
         desc: "Base de galleta crujiente, crema suave de queso y cobertura brillante de maracuyá.",
-        imagen: "https://images.unsplash.com/photo-1524351199679-46cddf530c04?w=600"
+        imagen: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600"
     },
     {
         id: 13,
         nombre: "Affogato al Cacao",
         precio: 3400,
         desc: "Una bola de helado artesanal de vainilla ahogada en un shot de espresso caliente.",
-        imagen: "https://images.unsplash.com/photo-1594911774802-8822a7079af1?w=600"
+        imagen: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600"
     },
     {
         id: 14,
