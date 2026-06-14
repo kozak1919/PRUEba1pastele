@@ -45,7 +45,7 @@ const productos = [
 ];
 
 // Función para recorrer el arreglo y renderizar los productos en el DOM
-const renderizarProductos = () => {
+const renderizarProductos = (listaProductos = productos) => {
     // Seleccionar el contenedor en el DOM
     const contenedor = document.querySelector(".products-container");
     
@@ -56,7 +56,7 @@ const renderizarProductos = () => {
     let contenidoHTML = "";
 
     // Recorrer el arreglo usando .forEach()
-    productos.forEach(producto => {
+    listaProductos.forEach(producto => {
         contenidoHTML += `
             <article class="product-card">
                 <img src="${producto.imagen}" alt="${producto.nombre}">
@@ -67,9 +67,45 @@ const renderizarProductos = () => {
         `;
     });
 
+    // Si no hay productos que mostrar, añadir mensaje amistoso
+    if (contenidoHTML === "") {
+        contenidoHTML = `<p class="no-results" style="grid-column: 1/-1; text-align: center; color: var(--color-text-muted); font-size: 1.1rem; width: 100%;">No se encontraron especialidades con ese nombre.</p>`;
+    }
+
     // Asignar el contenido acumulado al contenedor usando innerHTML
     contenedor.innerHTML = contenidoHTML;
 };
 
-// Ejecutar la función cuando el DOM esté completamente cargado
-document.addEventListener("DOMContentLoaded", renderizarProductos);
+// Función para configurar el buscador dinámico
+const inicializarBuscador = () => {
+    // Seleccionar el input de búsqueda usando querySelector
+    const inputBusqueda = document.querySelector("#search-input");
+    
+    if (!inputBusqueda) return;
+
+    // Escuchar el evento 'input' para búsqueda dinámica
+    inputBusqueda.addEventListener("input", (evento) => {
+        // Obtener el texto ingresado en minúsculas para una comparación insensible a mayúsculas
+        const textoIngresado = evento.target.value.toLowerCase();
+
+        // Crear un arreglo temporal con let para los productos filtrados
+        let productosFiltrados = [];
+
+        // Recorrer el arreglo original usando .forEach()
+        productos.forEach(producto => {
+            // Usar 'if' para verificar si el nombre coincide con el texto ingresado
+            if (producto.nombre.toLowerCase().includes(textoIngresado)) {
+                productosFiltrados.push(producto);
+            }
+        });
+
+        // Volver a renderizar solo los productos filtrados
+        renderizarProductos(productosFiltrados);
+    });
+};
+
+// Ejecutar la renderización y la inicialización de la búsqueda al cargar el DOM
+document.addEventListener("DOMContentLoaded", () => {
+    renderizarProductos();
+    inicializarBuscador();
+});
