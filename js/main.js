@@ -40,7 +40,7 @@ const productos = [
         nombre: "Tarta de Frambuesa",
         precio: 3900,
         desc: "Base crujiente de masa sable con crema pastelera y frambuesas frescas.",
-        imagen: "https://images.unsplash.com/photo-1519869325930-281384150729?w=600"
+        imagen: "https://www.tulipan.es/-/media/Project/Upfield/Brands/Flora/Tulipan-ES-clone/Assets/Recipes/Sync-Images/d12acdb0-9068-4ba0-ab11-06ca02fcba89.jpg?rev=b9851e8c083d4ee3be316cefe7ca2e3b&w=1600"
     },
     {
         id: 7,
@@ -61,14 +61,14 @@ const productos = [
         nombre: "Cinnamon Roll (Rol de Canela)",
         precio: 2800,
         desc: "Masa danesa suave enrollada con canela premium y glaseado de queso crema.",
-        imagen: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600"
+        imagen: "https://cdn.blog.paulinacocina.net/wp-content/uploads/2023/04/3_20230410_094455_0002.jpg"
     },
     {
         id: 10,
         nombre: "Mocha Blanco Helado",
         precio: 4200,
         desc: "Espresso, chocolate blanco premium, leche fría y hielo, coronado con crema batida.",
-        imagen: "https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?w=600"
+        imagen: "https://tofuu.getjusto.com/orioneat-local/resized2/EJMSHnBcTNJLgedst-300-x.webp"
     },
     {
         id: 11,
@@ -82,7 +82,7 @@ const productos = [
         nombre: "Cheesecake de Maracuyá",
         precio: 3800,
         desc: "Base de galleta crujiente, crema suave de queso y cobertura brillante de maracuyá.",
-        imagen: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=600"
+        imagen: "https://i.ytimg.com/vi/9DyZIC7pdD8/maxresdefault.jpg"
     },
     {
         id: 13,
@@ -96,14 +96,14 @@ const productos = [
         nombre: "Brownie con Nueces",
         precio: 2400,
         desc: "Brownie húmedo de chocolate bitter al 70% con nueces picadas, horneado en casa.",
-        imagen: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600"
+        imagen: "https://bakemark.com/wp-content/uploads/2024/08/Untitled-2560-x-1707-px-1-768x512.png.webp"
     },
     {
         id: 15,
         nombre: "Tarta de Limón",
         precio: 3600,
         desc: "Clásica masa dulce rellena de crema de limón ácida y cubierta con merengue suizo dorado.",
-        imagen: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600"
+        imagen: "https://www.bekiacocina.com/images/cocina/0000/512-h.jpg"
     }
 ];
 
@@ -122,13 +122,13 @@ const productosPorPagina = 5;
 const renderizarProductos = () => {
     // Seleccionar el contenedor en el DOM
     const contenedor = document.querySelector(".products-container");
-    
+
     // Verificar que el contenedor exista para evitar errores
     if (!contenedor) return;
 
     // Calcular paginación
     const totalPaginas = Math.ceil(productosMostrados.length / productosPorPagina);
-    
+
     // Asegurarse de que paginaActual no esté fuera de rango
     if (paginaActual > totalPaginas) {
         paginaActual = Math.max(1, totalPaginas);
@@ -220,7 +220,7 @@ const renderizarPaginacion = (totalPaginas) => {
             if (!isNaN(nuevaPagina) && nuevaPagina !== paginaActual) {
                 paginaActual = nuevaPagina;
                 renderizarProductos();
-                
+
                 // Hacer scroll suave hacia la sección de productos para mejorar la navegación
                 const seccionProductos = document.querySelector("#menu");
                 if (seccionProductos) {
@@ -338,7 +338,7 @@ const filtrarYRenderizar = (resetearPagina = true) => {
 const inicializarBuscador = () => {
     // Seleccionar el input de búsqueda usando querySelector
     const inputBusqueda = document.querySelector("#search-input");
-    
+
     if (!inputBusqueda) return;
 
     // Escuchar el evento 'input' para búsqueda dinámica
