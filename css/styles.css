@@ -5,13 +5,20 @@
    ========================================================================== */
 :root {
     /* Paleta de colores */
-    --color-coffee-dark: #2c1b11;    /* Marrón café tostado profundo */
-    --color-caramel: #d4a373;        /* Dorado caramelo / Color de acento principal */
-    --color-cream-soft: #fbfaf7;     /* Crema suave y limpio para el fondo general */
-    --color-latte: #e8e1d5;          /* Crema latte medio para contenedores y bordes */
-    --color-sage: #606c38;           /* Verde salvia orgánico para acentos secundarios */
-    --color-text-main: #40352c;      /* Marrón oscuro ceniza para legibilidad máxima */
-    --color-text-muted: #7d6e63;     /* Marrón claro apagado para subtítulos */
+    --color-coffee-dark: #2c1b11;
+    /* Marrón café tostado profundo */
+    --color-caramel: #d4a373;
+    /* Dorado caramelo / Color de acento principal */
+    --color-cream-soft: #fbfaf7;
+    /* Crema suave y limpio para el fondo general */
+    --color-latte: #e8e1d5;
+    /* Crema latte medio para contenedores y bordes */
+    --color-sage: #606c38;
+    /* Verde salvia orgánico para acentos secundarios */
+    --color-text-main: #40352c;
+    /* Marrón oscuro ceniza para legibilidad máxima */
+    --color-text-muted: #7d6e63;
+    /* Marrón claro apagado para subtítulos */
 
     /* Fuentes del sistema y premium */
     --font-heading: 'Playfair Display', Georgia, serif;
@@ -41,7 +48,12 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     color: var(--color-coffee-dark);
     font-weight: 700;
@@ -89,7 +101,8 @@ h2::after {
 
 /* A) Menú de Navegación */
 .main-header {
-    background-color: #f5ece1; /* Color crema cálido sutilmente diferente al del body */
+    background-color: #f5ece1;
+    /* Color crema cálido sutilmente diferente al del body */
     border-bottom: 1px solid var(--color-latte);
     position: sticky;
     top: 0;
@@ -106,7 +119,8 @@ h2::after {
     display: flex;
     justify-content: center;
     list-style: none;
-    gap: 40px; /* Distribución equilibrada entre enlaces */
+    gap: 40px;
+    /* Distribución equilibrada entre enlaces */
 }
 
 .nav-links a {
@@ -198,9 +212,11 @@ h2::after {
 /* B) Cuadrícula Flexible de Productos */
 .products-container {
     display: flex;
-    flex-wrap: wrap;       /* Ajuste ordenado en múltiples líneas si es necesario */
+    flex-wrap: wrap;
+    /* Ajuste ordenado en múltiples líneas si es necesario */
     justify-content: center;
-    gap: 30px;              /* Espacio regular entre tarjetas */
+    gap: 30px;
+    /* Espacio regular entre tarjetas */
     margin-top: 20px;
 }
 
@@ -258,21 +274,28 @@ h2::after {
 
 .product-card {
     background-color: #ffffff;
-    border: 1px solid rgba(44, 27, 17, 0.08); /* Borde más sutil y limpio */
-    border-radius: 12px;     /* Bordes redondeados suaves de 12px */
+    border: 1px solid rgba(44, 27, 17, 0.08);
+    /* Borde más sutil y limpio */
+    border-radius: 12px;
+    /* Bordes redondeados suaves de 12px */
     padding: 30px;
-    flex: 1 1 300px;        /* Diseño flexible que crece y se reduce adaptativamente */
+    flex: 1 1 300px;
+    /* Diseño flexible que crece y se reduce adaptativamente */
     max-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra difuminada muy sutil */
-    transition: all 0.3s ease; /* Transición suave para todos los efectos */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* Sombra difuminada muy sutil */
+    transition: all 0.3s ease;
+    /* Transición suave para todos los efectos */
 }
 
 .product-card:hover {
-    transform: translateY(-5px); /* Elevación sutil al pasar el cursor */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Aumentamos ligeramente la sombra */
+    transform: translateY(-5px);
+    /* Elevación sutil al pasar el cursor */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    /* Aumentamos ligeramente la sombra */
 }
 
 .product-image-container {
@@ -320,7 +343,8 @@ h2::after {
 }
 
 .btn-favorito i.fa-solid.favorito {
-    color: #e63946; /* Rojo intenso de favorito */
+    color: #e63946;
+    /* Rojo intenso de favorito */
 }
 
 .product-card h3 {
@@ -345,8 +369,10 @@ h2::after {
 /* C) Formulario de Contacto (Alineación vertical y botón centrado) */
 .contact-section {
     background-color: #ffffff;
-    border-radius: 8px;     /* Bordes redondeados modernos de 8px */
-    box-shadow: 0 6px 20px rgba(44, 27, 17, 0.06); /* Sombra sutil de elevación */
+    border-radius: 8px;
+    /* Bordes redondeados modernos de 8px */
+    box-shadow: 0 6px 20px rgba(44, 27, 17, 0.06);
+    /* Sombra sutil de elevación */
     margin: 40px auto 60px auto;
     padding: 50px 40px;
     max-width: 650px;
@@ -354,13 +380,15 @@ h2::after {
 
 .contact-form {
     display: flex;
-    flex-direction: column; /* Alineación vertical de los grupos del formulario */
+    flex-direction: column;
+    /* Alineación vertical de los grupos del formulario */
     gap: 20px;
 }
 
 .form-group {
     display: flex;
-    flex-direction: column; /* Alineación vertical del label y el campo input/select/textarea */
+    flex-direction: column;
+    /* Alineación vertical del label y el campo input/select/textarea */
     gap: 8px;
 }
 
@@ -374,7 +402,8 @@ h2::after {
 .form-group select,
 .form-group textarea {
     padding: 12px 16px;
-    border: 1px solid rgba(44, 27, 17, 0.12); /* Bordes más finos y sutiles */
+    border: 1px solid rgba(44, 27, 17, 0.12);
+    /* Bordes más finos y sutiles */
     border-radius: 8px;
     font-family: var(--font-body);
     font-size: 0.95rem;
@@ -388,8 +417,10 @@ h2::after {
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--color-caramel);
-    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.25); /* Enfoque llamativo */
-    background-color: #ffffff; /* Iluminación suave al enfocar */
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.25);
+    /* Enfoque llamativo */
+    background-color: #ffffff;
+    /* Iluminación suave al enfocar */
 }
 
 .form-group textarea {
@@ -399,26 +430,31 @@ h2::after {
 
 .form-actions {
     display: flex;
-    justify-content: center; /* Centrar el botón de envío horizontalmente */
+    justify-content: center;
+    /* Centrar el botón de envío horizontalmente */
     margin-top: 10px;
 }
 
 .btn-submit {
-    background: linear-gradient(135deg, var(--color-caramel), #b58353); /* Degradado premium café/caramelo */
+    background: linear-gradient(135deg, var(--color-caramel), #b58353);
+    /* Degradado premium café/caramelo */
     color: #ffffff;
     border: none;
     padding: 15px 45px;
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 1.05rem;
-    border-radius: 30px; /* Esquinas redondeadas estilo píldora premium */
+    border-radius: 30px;
+    /* Esquinas redondeadas estilo píldora premium */
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transición suave de color de fondo */
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    /* Transición suave de color de fondo */
 }
 
 .btn-submit:hover {
-    background: linear-gradient(135deg, #b58353, var(--color-coffee-dark)); /* Cambio dinámico en hover */
+    background: linear-gradient(135deg, #b58353, var(--color-coffee-dark));
+    /* Cambio dinámico en hover */
     box-shadow: 0 6px 20px rgba(44, 27, 17, 0.3);
     transform: translateY(-2px);
 }
@@ -448,12 +484,14 @@ h2::after {
     margin-bottom: 20px;
     line-height: 1.2;
     color: #ffffff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* Sombra de texto para legibilidad premium */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    /* Sombra de texto para legibilidad premium */
 }
 
 .hero-section p {
     font-size: 1.25rem;
-    color: var(--color-cream-soft); /* Contraste suave en color crema */
+    color: var(--color-cream-soft);
+    /* Contraste suave en color crema */
     max-width: 650px;
     margin: 0 auto;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -480,7 +518,8 @@ footer {
     padding: 40px 20px;
     font-size: 0.9rem;
     margin-top: 80px;
-    border-top: 3px solid var(--color-caramel); /* Línea de acento distintiva */
+    border-top: 3px solid var(--color-caramel);
+    /* Línea de acento distintiva */
 }
 
 /* ==========================================================================
@@ -494,11 +533,13 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    pointer-events: none; /* Evitar bloquear clics en la interfaz */
+    pointer-events: none;
+    /* Evitar bloquear clics en la interfaz */
 }
 
 .toast {
-    pointer-events: auto; /* Permitir clics sobre el toast si fuera necesario */
+    pointer-events: auto;
+    /* Permitir clics sobre el toast si fuera necesario */
     background-color: #ffffff;
     color: var(--color-coffee-dark);
     padding: 16px 24px;
@@ -547,4 +588,3 @@ footer {
 .toast-info i {
     color: var(--color-caramel);
 }
-
