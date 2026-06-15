@@ -231,6 +231,79 @@ const renderizarPaginacion = (totalPaginas) => {
     });
 };
 
+// Función flecha para mostrar una alerta flotante (toast) en pantalla
+// Recibe el mensaje a mostrar y el tipo de alerta ('success' o 'info')
+const mostrarAlerta = (mensaje, tipo) => {
+    // Obtener o crear el contenedor de toasts
+    let contenedorToast = document.querySelector("#toast-container");
+    if (!contenedorToast) {
+        contenedorToast = document.createElement("div");
+        contenedorToast.id = "toast-container";
+        document.body.appendChild(contenedorToast);
+    }
+
+    // Seleccionar ícono según el tipo de alerta
+    let icono = tipo === "success" ? "fa-solid fa-heart" : "fa-regular fa-heart";
+
+    // Crear el elemento toast dinámicamente
+    let toast = document.createElement("div");
+    toast.classList.add("toast", `toast-${tipo}`);
+    toast.innerHTML = `<i class="${icono}"></i><span>${mensaje}</span>`;
+
+    // Insertar en el contenedor
+    contenedorToast.appendChild(toast);
+
+    // Animar la entrada del toast (un frame después para que CSS detecte el cambio)
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            toast.classList.add("mostrar");
+        });
+    });
+
+    // Remover el toast después de 3 segundos con animación de salida
+    setTimeout(() => {
+        toast.classList.remove("mostrar");
+        // Esperar a que termine la transición antes de eliminar del DOM
+        toast.addEventListener("transitionend", () => toast.remove());
+    }, 3000);
+};
+
+// Función flecha para alternar el estado de favorito de un producto
+// Recibe el ID del producto como parámetro
+const alternarFavorito = (idProducto) => {
+    // Buscar si el producto ya existe en el arreglo de favoritos
+    let index = favoritos.indexOf(idProducto);
+
+    // Usar if para verificar: si no existe (index === -1), agregar; si existe, remover
+    if (index === -1) {
+        // El producto NO está en favoritos: agregar al arreglo con push()
+        favoritos.push(idProducto);
+
+        // Buscar el nombre del producto para personalizar el mensaje
+        let productoEncontrado = productos.find(p => p.id === idProducto);
+        let nombreProducto = productoEncontrado ? productoEncontrado.nombre : "Producto";
+
+        // Mostrar alerta de éxito: producto agregado
+        mostrarAlerta(`¡${nombreProducto} agregado a favoritos!`, "success");
+    } else {
+        // El producto SÍ está en favoritos: remover con splice()
+        favoritos.splice(index, 1);
+
+        // Buscar el nombre del producto para personalizar el mensaje
+        let productoEncontrado = productos.find(p => p.id === idProducto);
+        let nombreProducto = productoEncontrado ? productoEncontrado.nombre : "Producto";
+
+        // Mostrar alerta informativa: producto removido
+        mostrarAlerta(`${nombreProducto} eliminado de favoritos.`, "info");
+    }
+
+    // Guardar la lista actualizada en LocalStorage para persistencia
+    localStorage.setItem("cafeteria_favoritos", JSON.stringify(favoritos));
+
+    // Refrescar la visualización manteniendo la página actual
+    filtrarYRenderizar(false);
+};
+
 // Función unificada para filtrar y renderizar según la búsqueda y el filtro de favoritos
 const filtrarYRenderizar = (resetearPagina = true) => {
     const inputBusqueda = document.querySelector("#search-input");
@@ -281,24 +354,15 @@ const inicializarFavoritos = () => {
 
     // Delegación de eventos (addEventListener) para gestionar clics en botones de favoritos
     contenedor.addEventListener("click", (evento) => {
+        // Capturar el botón de favorito más cercano al elemento clickeado
         const botonFavorito = evento.target.closest(".btn-favorito");
         if (!botonFavorito) return;
 
-        const idProducto = parseInt(botonFavorito.dataset.id);
-        const index = favoritos.indexOf(idProducto);
+        // Capturar el ID del producto desde el atributo data-id del botón
+        let idProducto = parseInt(botonFavorito.dataset.id);
 
-        // Usar 'if' para alternar el producto en el arreglo de favoritos
-        if (index === -1) {
-            favoritos.push(idProducto);
-        } else {
-            favoritos.splice(index, 1);
-        }
-
-        // Guardar la lista actualizada en LocalStorage
-        localStorage.setItem("cafeteria_favoritos", JSON.stringify(favoritos));
-
-        // Refrescar la visualización manteniendo la página actual
-        filtrarYRenderizar(false);
+        // Llamar a la función flecha alternarFavorito con el ID capturado
+        alternarFavorito(idProducto);
     });
 
     // Filtro de favoritos (Mis Favoritos / Todos los Productos)

@@ -483,3 +483,68 @@ footer {
     border-top: 3px solid var(--color-caramel); /* Línea de acento distintiva */
 }
 
+/* ==========================================================================
+   8. SISTEMA DE ALERTAS (TOASTS) PREMIUM
+   ========================================================================== */
+#toast-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none; /* Evitar bloquear clics en la interfaz */
+}
+
+.toast {
+    pointer-events: auto; /* Permitir clics sobre el toast si fuera necesario */
+    background-color: #ffffff;
+    color: var(--color-coffee-dark);
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(44, 27, 17, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    min-width: 280px;
+    max-width: 380px;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 5px solid var(--color-caramel);
+}
+
+.toast.mostrar {
+    transform: translateX(0);
+}
+
+.toast i {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.toast span {
+    line-height: 1.4;
+}
+
+/* Estado: Agregado a favoritos (Verde/Salvia) */
+.toast-success {
+    border-left-color: var(--color-sage);
+}
+
+.toast-success i {
+    color: var(--color-sage);
+}
+
+/* Estado: Eliminado de favoritos (Caramelo) */
+.toast-info {
+    border-left-color: var(--color-caramel);
+}
+
+.toast-info i {
+    color: var(--color-caramel);
+}
+
